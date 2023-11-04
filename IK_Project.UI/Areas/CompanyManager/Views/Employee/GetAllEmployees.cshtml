@@ -1,0 +1,123 @@
+﻿@using IK_Project.UI.Areas.CompanyManager.Models.Employee;
+
+@{
+    ViewData["Title"] = "GetAllEmployees";
+}
+
+
+@model List<CompanyManagerEmployeeListVM>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="shortcut icon" href="../../assets/images/favicon.png" />
+</head>
+<div class="row">
+    <div class="col-lg-12">
+        <a class="btn btn-primary" style="color:azure; font-size:larger" asp-action="Create">Add New Employee</a>
+    </div>
+
+</div>
+<br />
+<br />
+<br />
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table align-middle mb-0 bg-white">
+                <thead class="bg-light">
+                    <tr>
+                        <th>Profile Photo</th>
+                        <th>Name</th>
+                        <th>LastName</th>
+                        <th>StartDate</th>
+                        <th>Departmant</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @if (item.ProfilePhoto != null)
+                                {
+                                    <img class="company-logo" src="~/images/@item.ProfilePhoto" asp-for="@item.ProfilePhoto">
+                                }
+                                else
+                                {
+                                    <img class="company-logo" src="~/images/myLogo.jpg" asp-for="@item.ProfilePhoto">
+                                }
+                                <p class="text-muted mb-0"></p>
+                            </td>
+                            <td>
+                                <p class="fw-normal mb-1" asp-for="@item.Name">@item.Name</p>
+                                <p class="text-muted mb-0"></p>
+                            </td>
+                            <td>
+                                <p class="fw-normal mb-1" asp-for="@item.LastName">@item.LastName</p>
+                                <p class="text-muted mb-0"></p>
+                            </td>
+                            <td>
+                                <p class="fw-normal mb-1" asp-for="@item.StartDate">
+                                    @if (item.StartDate.HasValue)
+                                    {
+                                        @item.StartDate.Value.ToShortDateString()
+                                    }
+                                    else
+                                    {
+                                        <span>Null</span>
+                                    }
+                                </p>
+                                <p class="text-muted mb-0"></p>
+                            </td>
+                            <td>
+                                <p class="fw-normal mb-1" asp-for="@item.DepartmantName">@item.DepartmantName</p>
+                                <p class="text-muted mb-0"></p>
+
+                            </td>
+
+                            <td>
+                                <a asp-action="Details" asp-area="CompanyManager" asp-controller="Employee" asp-route-id="@item.Id" type="button" class="btn btn-secondary">
+                                    Details
+                                </a>
+                            </td>
+                            <td>
+                                <a asp-action="Delete" asp-area="CompanyManager" asp-controller="Employee" asp-route-id="@item.Id" type="button" class="btn btn-danger" onclick="return showDataAlert()">
+                                    Delete
+                                </a>
+                            </td>
+                            @*
+                    <td>
+                    <p class="fw-normal mb-1" asp-for="@item.Profession">@item.Profession</p>
+                    <p class="text-muted mb-0"></p>
+                    </td>*@
+
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+}
+else
+{
+    <h3 style="color: red; font-weight: bold;">There is no staff in the company. If you don`t add any deparmant, please firstly add your company departmans.</h3>
+}
+<style>
+    /* Logo boyutunu ayarla */
+    .company-logo {
+        max-width: 50px; /* İstediğiniz genişliği burada belirtin */
+        max-height: 50px; /* İstediğiniz yüksekliği burada belirtin */
+    }
+</style>

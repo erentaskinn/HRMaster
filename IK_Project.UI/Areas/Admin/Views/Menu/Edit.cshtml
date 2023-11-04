@@ -1,0 +1,230 @@
+﻿@using IK_Project.Domain.Enums;
+@using IK_Project.UI.Areas.Admin.Models.ViewModels.MenuVMs;
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@model AdminMenuUpdateVM
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="shortcut icon" href="../../assets/images/favicon.png" />
+</head>
+<html lang="en">
+<style>
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=date], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=datetime], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=email], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=number], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=password], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+
+</style>
+
+<div class="container-xl px-4 mt-4">
+
+
+    <!-- Account details card-->
+
+     @*<form class="needs-validation" novalidate method="post" asp-action="Edit" asp-area="Admin" asp-controller="Menu">*@
+    <form method="post" asp-action="Edit" asp-area="Admin" asp-controller="Menu">
+       
+
+        <div class="card mb-4 mb-xl-0">
+            <div class="card-header" style="font-size:18px;">Package Details</div>
+
+            <div class="card-body">
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=Name class="small mb-1" for="inputCompanyManager">Name:</label>
+                    <input style="font-size:16px;" asp-for=Name type="text" value="@Model.Name" id="inputCompanyManager">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
+                </div>
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=Period class="small mb-1" for="inputCompanyManager">Period:</label>
+                    <input style="font-size:16px;" asp-for=Period type="number" value="@Model.Period" id="inputCompanyManager">
+                    <span asp-validation-for="Period" class="text-danger"></span>
+
+                </div>
+                @* <div class="mb-3">
+                    <label asp-for="UnitPrice" for="validationCustom" class="form-label">Unite Price</label>
+                    <input asp-for="UnitPrice" type="text" class="form-control" id="validationCustom" value="@Model.UnitPrice" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div> *@
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for="UnitPrice" class="small mb-1">Unite Price</label>
+                    <input style="font-size:16px;" asp-for="UnitPrice" type="text" value="@Model.UnitPrice" id="form4Example1">
+                    <span asp-validation-for="UnitPrice" class="text-danger"></span>
+
+                </div>
+
+                    @*<div class="mb-3">
+                    <label style="font-size:16px;" asp-for="UnitPrice" class="small mb-1" for="inputCompanyManager">Unit Price:</label>
+                    <input style="font-size:16px;" asp-for="UnitPrice" type="text" value="@Model.UnitPrice." id="form4Example1">
+                    <span asp-validation-for="UnitPrice" class="text-danger"></span>
+                </div>*@
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=UserAmount class="small mb-1" for="inputCompanyManager">User Amount:</label>
+                    <input style="font-size:16px;" asp-for=UserAmount type="number" value="@Model.UserAmount" id="form4Example1">
+                    <span asp-validation-for="UserAmount" class="text-danger"></span>
+
+                </div>
+
+
+
+                <div class="mb-4">
+                    <label class="form-label" for="form4Example1">Currecy :</label>
+                    <select style="font-size:16px;" style="height:max-content" asp-for="Currecy" asp-items="@Html.GetEnumSelectList<CurrecyUnit>()" class="form-control">
+                        <option value="@Model.Currecy" disabled selected hidden>Choose Currecy...</option>
+                    </select>
+                </div>
+@*                <div class="mb-4">
+                    <label class="form-label" for="form4Example1">Status :</label>
+                    <select style="font-size:16px;" style="height:max-content" asp-for="Status" asp-items="@Html.GetEnumSelectList<Status>()" class="form-control">
+                        <option value="@Model.Status" disabled selected hidden>Choose Status...</option>
+                    </select>
+                </div>*@
+                <div class="mb-4">
+                    <label class="form-label" for="form4Example1">Status :</label>
+                    <select id="isActiveDropdown" style="font-size: 16px; height: max-content" asp-for="IsActive" class="form-control">
+                        <option value="true">Active</option>
+                        <option value="false">Deactive</option>
+                    </select>
+                </div>
+
+                @* <input type="submit" class="btn btn-primary btn-block mb-4" value="Değişiklikleri Kaydet" />
+ *@
+                <!-- Save changes button-->
+
+                <button type="submit" class="btn btn-primary float-right">Save Changes</button>
+                
+            </div>
+        </div>
+
+    </form>
+
+</div>
+<script>
+    (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+
+</script>
+<script>
+    var isActive = @Model.IsActive.ToString().ToLower();
+    document.getElementById('isActiveDropdown').value = isActive;
+</script>
+</html>
+
+

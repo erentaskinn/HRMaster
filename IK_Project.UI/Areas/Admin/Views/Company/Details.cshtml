@@ -1,0 +1,311 @@
+﻿@using IK_Project.UI.Areas.Admin.Models.ViewModels.CompanyVM;
+@using IK_Project.Domain.Enums;
+@using IK_Project.Application.Models.DTOs.CompanyDTOs;
+@{
+    ViewData["Title"] = "Details";
+}
+
+@model AdminCompanyUpdateVM
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <link rel="stylesheet" href="~/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="shortcut icon" href="~/assets/images/favicon.png" />
+</head>
+<html lang="en">
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=date], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=email], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=number], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=password], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+   
+</style>
+
+<div class="container-xl px-4 mt-4">
+
+    <!-- Account details card-->
+
+    <form enctype="multipart/form-data" method="post" asp-action="Details" asp-area="Admin" asp-controller="Company">
+@*        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+*@
+        @*  <div class="col-xl-4">*@
+        <!-- Profile picture card-->
+        <div class="card-header" style="font-size:20px;">Company Details</div>
+        <br />
+        <div class="mb-3">
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header" style="font-size:18px;">Company Logo</div>
+                <div class="card-body text-center">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="card">
+                                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                                    @if (Model.Logo != null)
+                                    {
+                                        <img id="selectedImage" src="~/images/@Model.Logo" alt="Company Logo">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/assets/img/profile-img.jpg" alt="Profile">
+                                    }
+                                   
+                                    <h2>@Model.CompanyName</h2>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*                    @if (Model.LogoFile != null)
+                    {
+                        <img class="company-LogoFile" src="~/images/@Model.LogoFile" />
+                    }*@
+              
+@*                    <img id="selectedImage" src="" alt="Selected Image" />
+*@                    <input type="file" id="imageInput" asp-for="@Model.LogoFile" accept="image/*" class="form-control" />
+                  <span asp-validation-for="LogoFile.Length" class="text-danger"></span>
+                    <span asp-validation-for="LogoFile.ContentType" class="text-danger"></span>
+                    <span asp-validation-for="LogoFile" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card mb-4 mb-xl-0">
+            <div class="card-header">Details</div>
+
+            <div class="card-body">
+
+               @* <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Id:</label>
+                    <input style="background-color: lightgrey;" style="font-size:16px;" readonly asp-for="Id" id="form4Example1" type="text" value="@Model.Id" />
+                </div>*@
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Company Name:</label>
+                    <input style="background-color: white;" style="font-size:16px;" asp-for="CompanyName" id="form4Example1" type="text" value="@Model.CompanyName"  />
+                    <span asp-validation-for="CompanyName" class="text-danger"></span>
+
+                </div>
+                <div class="form-group mb-3">
+                    <label style="font-size:16px;" asp-for="MenuId" class="small mb-1" for="form4Example1">Package Selection</label>
+                    <select asp-for="MenuId" asp-items="Model.MenuList" style="background-color: white;" style="font-size:16px;" id="form4Example1" ></select>
+                    <span asp-validation-for="MenuId" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Number Of Employees:</label>
+                    <input style="font-size:16px;" asp-for="NumberOfEmployees" id="form4Example1" type="text" value="@Model.NumberOfEmployees"  />
+                    <span asp-validation-for="NumberOfEmployees" class="text-danger"></span>
+
+                </div>
+                @*<div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Company Title:</label>
+                    <input style="background-color: lightgrey;" style="font-size:16px;" readonly asp-for="CompanyTitle" id="form4Example1" type="text" value="@Model.CompanyTitle" />
+                </div>*@
+               @* <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Mersis No:</label>
+                    <input style="font-size:16px;" asp-for="MersisNo" id="form4Example1" type="text" value="@Model.MersisNo" />
+                </div>*@
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Tax No:</label>
+                    <input style="font-size:16px;" asp-for="TaxNo" id="form4Example1" type="text" value="@Model.TaxNo"  />
+                    <span asp-validation-for="TaxNo" class="text-danger"></span>
+
+                </div>
+
+               @* <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Tax Administration:</label>
+                    <input style="font-size:16px;" asp-for="TaxAdministration" id="form4Example1" type="text" value="@Model.TaxAdministration" />
+                </div>*@
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Phone Number:</label>
+                    <input style="font-size:16px;" asp-for="PhoneNumber" id="form4Example1" type="text" value="@Model.PhoneNumber"  />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Address:</label>
+                    <input style="font-size:16px;" asp-for="Address" id="form4Example1" type="text" value="@Model.Address"  />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Email:</label>
+                    <input style="font-size:16px;" asp-for="Email" id="form4Example1" type="text" value="@Model.Email"  />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
+                </div>
+
+
+              @*  <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Founded:</label>
+                    <input style="background-color: lightgrey;" style="font-size:16px;" readonly asp-for="Founded" id="form4Example1" type="date" />
+                </div>*@
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Deal Start Date:</label>
+                    <input style="background-color: white;" style="font-size:16px;"  asp-for="DealStartDate" id="form4Example1" type="date"  />
+                    <span asp-validation-for="DealStartDate" class="text-danger"></span>
+
+                </div>
+
+@*                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Deal End Date:</label>
+                    <input style="background-color: white;" style="font-size:16px;" readonly asp-for="DealEndDate" id="form4Example1" type="date" required />
+                </div>*@
+
+                @*<div class="mb-3">
+                    <label hidden asp-for=CreatedDate class="small mb-1" for="inputDateTime">CreatedDate:</label>
+                    <input hidden readonly asp-for=CreatedDate class="form-control" id="inputDateTime" type="text" value="@Model.CreatedDate">
+                </div>
+
+                <div class="mb-3">
+                    <label hidden class="form-label" for="inputCompany">ModifiedBy:</label>
+                    <input hidden readonly asp-for=@Model.ModifiedBy class="form-control" id="inputCompany" type="text" value="@Model.ModifiedBy">
+                </div>
+
+                <div class="mb-3">
+                    <label hidden class="form-label" for="inputCompany">CreatedBy:</label>
+                    <input hidden readonly asp-for=@Model.CreatedBy class="form-control" id="inputCompany" type="text" value="@Model.CreatedBy">
+                </div>
+
+                <div class="mb-3">
+                    <label hidden class="form-label" for="inputDateTime">ModifiedDate:</label>
+                    <input hidden readonly asp-for=@Model.ModifiedDate class="form-control" id="inputDateTime" type="text" value="@Model.ModifiedDate">
+                </div>*@
+
+   @*             <div class="mb-3">
+                    <label hidden class="form-label" for="inputDateTime">Status:</label>
+                    <input hidden readonly asp-for=@Model.IsActive class="form-control" id="inputDateTime" type="text" value=@Model.IsActive>
+                </div>*@
+
+
+
+                
+
+
+
+
+
+
+
+               
+                <!-- Save changes button-->
+                <button type="submit" class="btn btn-primary float-right">Save Changes</button>
+                @if (!string.IsNullOrEmpty(ViewData["ProfilePhotoError"] as string))
+                {
+                    <div class="text-danger">@ViewData["ProfilePhotoError"]</div>
+                }
+            </div>
+        </div>
+
+   </form>
+
+</div>
+
+<style>
+    /* Logo boyutunu ayarla */
+    .company-LogoFile {
+        max-width: 50%; /* İstediğiniz genişliği burada belirtin */
+        max-height: 50%; /* İstediğiniz yüksekliği burada belirtin */
+    }
+</style>
+
+</html>
+<script>
+    var isActive = @Model.IsActive.ToString().ToLower();
+    document.getElementById('isActiveDropdown').value = isActive;
+</script>
+<script>
+    const imageInput = document.getElementById('imageInput');
+    const selectedImage = document.getElementById('selectedImage');
+
+    imageInput.addEventListener('change', function () {
+        const file = imageInput.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                selectedImage.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+    selectedImage.style.maxWidth = '200px';
+    selectedImage.style.maxHeight = '150px';
+</script>

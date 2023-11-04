@@ -1,0 +1,251 @@
+﻿@using IK_Project.Domain.Enums;
+@using IK_Project.UI.Areas.CompanyManager.Models.DepartmanManager;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+@model CompanyManagerDepartmantManagerUpdateVM
+
+<link href="~/css/mailtoggle.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <link rel="stylesheet" href="~/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="shortcut icon" href="~/assets/images/favicon.png" />
+</head>
+
+<html lang="en">
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=date], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=email], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=number], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=password], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+    .ProfilePhoto {
+        max-width: 50%; /* İstediğiniz genişliği burada belirtin */
+        max-height: 50%; /* İstediğiniz yüksekliği burada belirtin */
+    }
+
+</style>
+
+<div class="container-xl px-4 mt-4">
+
+
+    <form enctype="multipart/form-data" method="post" asp-action="Details" asp-area="CompanyManager" asp-controller="DepartmantManager">
+
+
+
+        <div class="card-header" style="font-size:20px;">Profile Details</div>
+        <br />
+        <div class="mb-3">
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header">Profile Picture</div>
+
+                <div class="card-body text-center">
+                    @if (Model.ProfilePhoto != null)
+                    {
+                        <img id="selectedImage" src="~/images/@Model.ProfilePhoto" alt="Company Logo">
+                    }
+                    else
+                    {
+                        <img src="~/assets/img/profile-img.jpg" alt="Profile">
+                    }
+                    <div class="card-body text-center">
+@*                       <img id="selectedImage" src="" alt="Selected Image" />
+*@                      <input type="file" id="imageInput" asp-for="@Model.LogoFile" accept="image/*" class="form-control" />
+                        <span asp-validation-for="LogoFile.Length" class="text-danger"></span>
+                        <span asp-validation-for="LogoFile.ContentType" class="text-danger"></span>
+                        <span asp-validation-for="LogoFile" class="text-danger"></span>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="card mb-4 mb-xl-0">
+            <div class="card-header" style="font-size:18px;">Details</div>
+
+            <div class="card-body">
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for="@Model.Name" class="small mb-1" for="inputUsername">First Name:</label>
+                    <input style="font-size:16px;" asp-for="@Model.Name" id="inputUsername" type="text" >
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.LastName class="small mb-1" for="inputUsername">Last Name:</label>
+                    <input style="font-size:16px;" asp-for=@Model.LastName id="inputUsername" type="text" >
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <label asp-for=DepartmantName class="small mb-1" for="inputUser">Departmant Name:</label>
+                <select style="font-size:16px;" style="height:max-content" asp-for="DepartmantId">
+                    <option selected value="@Model.DepartmantName">Select Departmant... </option>
+
+                    @if (Model.DepartmantDTOs != null)
+                    {
+                        @foreach (var item in Model.DepartmantDTOs)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    }
+                </select>
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.BirthDate class="small mb-1" for="inputUsername">Birth Date:</label>
+                    <input style="font-size:16px;" asp-for=@Model.BirthDate id="form4Example2" type="date" >
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.BirhtPlace class="small mb-1" for="inputUsername">Birth Place:</label>
+                    <input style="font-size:16px;" asp-for=@Model.BirhtPlace id="inputUsername" type="text" >
+                    <span asp-validation-for="BirhtPlace" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.StartDate class="small mb-1" for="inputUsername">Start Date:</label>
+                    <input style="font-size:16px;" asp-for=@Model.StartDate id="form4Example2" type="date" >
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.Email class="small mb-1" for="inputUsername">Email:</label>
+                    <input style="font-size:16px;" asp-for=@Model.Email id="form4Example2" type="text" >
+                </div>
+                <div class="mb-3">
+                    <label hidden asp-for=AppUserID class="small mb-1" for="inputUser">AppUserID:</label>
+                    <input hidden readonly asp-for=AppUserID class="form-control" id="inputDateTime" type="text" value="@Model.AppUserID">
+                </div>
+                <div class="mb-3">
+                    <input hidden readonly asp-for=CompanyID class="form-control" id="inputDateTime" type="text" value="@Model.CompanyID">
+                </div>
+                <div class="mb-3">
+
+                    <input hidden readonly asp-for=DepartmantName class="form-control" id="inputDateTime" type="text" value="@Model.DepartmantName">
+                </div>
+                <div class="mb-3">
+                    <input hidden readonly asp-for=DepartmantDTOs class="form-control" id="inputDateTime" type="text" value="@Model.DepartmantDTOs">
+                </div>
+
+                <button type="submit" class="btn btn-primary float-right">Save Changes</button>
+                @if (!string.IsNullOrEmpty(ViewData["ProfilePhotoError"] as string))
+                {
+                    <div class="text-danger">@ViewData["ProfilePhotoError"]</div>
+                }
+            </div>
+        </div>
+
+    </form>
+
+</div>
+</html>
+<style>
+    /* Logo boyutunu ayarla */
+    .photo-size {
+        max-width: 500px; /* İstediğiniz genişliği burada belirtin */
+        max-height: 500px; /* İstediğiniz yüksekliği burada belirtin */
+    }
+</style>
+<script>
+    const imageInput = document.getElementById('imageInput');
+    const selectedImage = document.getElementById('selectedImage');
+
+    imageInput.addEventListener('change', function () {
+        const file = imageInput.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                selectedImage.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+    selectedImage.style.maxWidth = '200px';
+    selectedImage.style.maxHeight = '150px';
+</script>

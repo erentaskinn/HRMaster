@@ -1,0 +1,66 @@
+﻿@using IK_Project.UI.Areas.CompanyManager.Models.Departmant;
+@{
+    ViewData["Title"] = "Index";
+}
+@model List<CompanyManagerDepartmantListVM>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="shortcut icon" href="../../assets/images/favicon.png" />
+</head>
+<div class="row">
+    <div class="col-lg-12">
+        <a asp-action="Create" asp-area="CompanyManager" asp-controller="Departmant" type="button" class="btn btn-secondary">
+            Add Departmant
+        </a>
+    </div>
+</div>
+<br />
+<br />
+<br />
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table align-middle mb-0 bg-white">
+                <thead class="bg-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <p class="fw-normal mb-1" asp-for="@item.Name">@item.Name</p>
+                                <p class="text-muted mb-0"></p>
+                            </td>
+                            <td>
+                                <a asp-action="Update" asp-area="CompanyManager" asp-controller="Departmant" asp-route-id="@item.Id" type="button" class="btn btn-secondary">
+                                    Update
+                                </a>
+                            </td>
+                            <td>
+                                <a asp-action="Delete" asp-area="CompanyManager" asp-controller="Departmant" asp-route-id="@item.Id" type="button" class="btn btn-danger" onclick="return showDataAlert()">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <h3 style="color: red; font-weight: bold;">There is no departmant in the company</h3>
+}

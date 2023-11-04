@@ -1,0 +1,256 @@
+﻿@using IK_Project.Domain.Enums;
+@using IK_Project.UI.Areas.Admin.Models.ViewModels.MenuVMs;
+
+@{
+    ViewData["Title"] = "GetAllMenus";
+}
+
+@model List<AdminMenuListVM>
+<link href="~/css/menutogglecss.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="shortcut icon" href="../../assets/images/favicon.png" />
+</head>
+<style>
+    body {
+        margin-top: 20px;
+    }
+
+    .pricing-box {
+        -webkit-box-shadow: 0px 5px 30px -10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 5px 30px -10px rgba(0, 0, 0, 0.1);
+        padding: 35px 50px;
+        border-radius: 20px;
+        position: relative;
+        background-color: purple; /* Set the background color to purple */
+        color: white; /* Set the text color to white or any other color that works with the background */
+    }
+
+/*    .pricing-box {
+        -webkit-box-shadow: 0px 5px 30px -10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 5px 30px -10px rgba(0, 0, 0, 0.1);
+        padding: 35px 50px;
+        border-radius: 20px;
+        position: relative;
+    }*/
+
+        .pricing-box .plan {
+            font-size: 34px;
+        }
+
+    .pricing-badge {
+        position: absolute;
+        top: 0;
+        z-index: 999;
+        right: 0;
+        width: 100%;
+        display: block;
+        font-size: 15px;
+        padding: 0;
+        overflow: hidden;
+        height: 100px;
+    }
+
+        .pricing-badge .badge {
+            float: right;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            right: -67px;
+            top: 17px;
+            position: relative;
+            text-align: center;
+            width: 200px;
+            font-size: 13px;
+            margin: 0;
+            padding: 7px 10px;
+            font-weight: 500;
+            color: #ffffff;
+            background: #fb7179;
+        }
+
+    .mb-2, .my-2 {
+        margin-bottom: .5rem !important;
+    }
+
+    p {
+        line-height: 1.7;
+    }
+
+    /* Düğme konteynerı için stiller */
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px; /* Düğme konteynerı ile kart arasındaki boşluk */
+    }
+
+    /* Güncelle düğmesi stilini özelleştirme */
+    .update-button {
+        background-color: white; /* Mavi renk */
+        color: chocolate; /* Beyaz renkli metin */
+        border: none; /* Kenarlık yok */
+        padding: 10px 20px; /* Düğme içi dolgusu */
+        border-radius: 10px; /* Köşeleri yuvarlat */
+        cursor: pointer; /* İşaretçiyi el işareti yap */
+    }
+
+    /* Sil düğmesi stilini özelleştirme */
+    .delete-button {
+        background-color: white; /* Kırmızı renk */
+        color: darkred; /* Beyaz renkli metin */
+        border: none; /* Kenarlık yok */
+        padding: 10px 20px; /* Düğme içi dolgusu */
+        border-radius: 10px; /* Köşeleri yuvarlat */
+        cursor: pointer; /* İşaretçiyi el işareti yap */
+    }
+
+
+
+</style>
+
+<div class="row">
+    <div class="col-lg-12">
+        <a class="btn btn-primary" style="color:azure; font-size:larger" asp-action="Create">Add New Package</a>
+    </div>
+</div>
+<br />
+
+<section class="section" id="pricing">
+    <div class="container">
+        <div class="row mt-5 pt-4">
+            @foreach (var item in Model)
+            {
+
+                <div class="col-lg-4">
+                    <div class="pricing-box mt-4">
+                        <div>
+@*                                @{
+                                    bool isMenuActive = item.Status == Status.Active;
+                                }*@
+
+ @*                           <div class="toggle-container">
+                                <label class="toggle-label">
+                                    <input type="checkbox" id="toggle_@item.Id" class="toggle-input" data-menuid="@item.Id" data-status="@item.Status" @(isMenuActive ? "checked" : "")>
+                                    <span class="slider"></span>
+                                </label>
+                                <p id="status_@item.Id" class="status"> @(isMenuActive ? "Active" : "Deactive")</p>
+                            </div>*@
+
+                        </div>
+        @*                <td>
+                            @{
+                                bool IsActive = item.IsActive == true;
+                            }
+                            <div class="toggle-container">
+                                <label class="toggle-label">
+                                    <input type="checkbox" id="toggle_@item.Id" class="toggle-input" data-companyid="@item.Id" data-status="@item.IsActive">
+                                    <span class="slider"></span>
+                                </label>
+                                <p id="status_@item.Id" class="status"> @(item.IsActive.Value ? "Active" : "Deactive")</p>
+                            </div>
+                        </td>*@
+
+                        <td>
+                            @{
+                                bool isMenuActive = item.IsActive ;
+                            }
+
+                            <div class="toggle-container">
+                                <label class="toggle-label">
+                                    <input type="checkbox" id="toggle_@item.Id" class="toggle-input" data-menuid="@item.Id" data-status="@item.IsActive ? 'true' : 'false'" @(isMenuActive ? "checked" : "")>
+                                    <span class="slider"></span>
+                                </label>
+                                <p id="status_@item.Id" class="status"> @(isMenuActive ? "Active" : "Deactive")</p>
+                            </div>
+
+
+                        </td>
+
+                        @if (item.Name == "Basic")
+                        {
+                            <i class="mdi mdi-account h1"></i>
+                        }
+                        else if (item.Name == "Standart")
+                        {
+                            <div class="pricing-badge">
+                                <span class="badge">Featured</span>
+                            </div>
+                            <i class="mdi mdi-account-multiple h1 text-primary"></i>
+                        }
+                        else if (item.Name == "Premium")
+                        {
+                            <i class="mdi mdi-account-multiple-plus h1"></i>
+                        }
+                        <h4 class="f-20">@item.Name</h4>
+                        <div class="mt-4 pt-2">
+                            <p class="mb-2 f-18">Features</p>
+
+                            <p class="mb-2">
+                                <i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b style="font-size:larger">@($"{item.UnitPrice} {item.Currecy}")</b>
+                                Price
+
+                            </p>
+                            <p class="mb-2">
+                                <i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b style="font-size:larger">@item.UserAmount</b>
+                                Total User
+                            </p>
+                            <p class="mb-2">
+                                <i class="mdi mdi-checkbox-marked-circle text-success f-18 mr-2"></i><b style="font-size:larger">@item.Period</b>
+                                Monthly Updated Periods
+                            </p>
+                        </div>
+                        <p class="mt-4 pt-2 text-muted">
+                            Semper urna veal tempus pharetra elit habisse platea dictumst.
+                        </p>
+                        <div class="pricing-plan mt-4 pt-2">
+                            <h4 class="text-muted"><s> @($"{(@item.UnitPrice + 899)} {item.Currecy}") </s> <span class="plan pl-3 text-dark">@($"{item.UnitPrice} {item.Currecy}") </span></h4>
+                            <p class="text-muted mb-0">Per 3 Months</p>
+                            <div class="button-container">
+                                <a class="btn btn-primary update-button" asp-controller="Menu" asp-action="Edit" asp-area="Admin" asp-route-id="@item.Id">Update</a>
+                                <a class="btn btn-danger delete-button" asp-controller="Menu" asp-action="Delete" asp-area="Admin" asp-route-id="@item.Id" onclick="return showDataAlert()">Delete</a>
+
+                            </div>
+                        </div>
+                       @* <div class="mt-4 pt-3">
+                            <a href="http://localhost:5254/Home/GetOffer" class="btn btn-primary btn-rounded">Get Offer Now</a>
+                        </div>*@
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+</section>
+
+<script>
+
+    $('input[type="checkbox"]').change(function () {
+        const menuId = $(this).data("menuid");
+        const newStatus = this.checked; // true veya false olarak checkbox durumunu alın
+
+        // Değişkenin değerini konsola yazdırın
+        console.log("newStatus:", newStatus);
+        console.log(menuId);
+
+        const statusElement = $("#status_" + menuId);
+        statusElement.text(newStatus ? "Active" : "Deactive");
+
+        $.ajax({
+            url: "/Admin/Menu/UpdateMenuStatus",
+            type: "POST",
+            data: { menuId: menuId, newStatus: newStatus },
+        });
+    });
+</script>
+

@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="shortcut icon" href="../../assets/images/favicon.png" />
+</head>
+<html lang="en">
+<style>
+    .container3 {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        background-color: white;
+        /*        height: 250px;
+                      gap: 10px;   */
+    }
+</style>
+
+
+
+<div class="container3">
+
+    @* @await Component.InvokeAsync("Employee") *@
+
+</div>
+
+<div class="container3">
+    <div class="card" style="width: 23rem;">
+        <img src="~/images/workExpense.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Expense</h5>
+            <p class="card-body">Adding, deleting, updating and listing Expense are done in this section. </p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-danger" style="color:azure; font-size:larger" asp-action="Add" asp-area="Employee" asp-controller="Expense">Add Expense</a>
+        </div>
+    </div>
+    <div class="card" style="width: 23rem;">
+        <img src="~/images/workAdvance.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Advance</h5>
+            <p class="card-body">Adding, deleting, updating and listing Advance are done in this section. </p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-primary" style="color:azure; font-size:larger" asp-action="Add" asp-area="Employee" asp-controller="Advance">Add Advance</a>
+        </div>
+    </div>
+    <div class="card" style="width: 23rem;">
+        <img src="~/images/workPermission.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Permission</h5>
+            <p class="card-body">Adding, deleting, updating and listing Permission are done in this section. </p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-success" style="color:azure; font-size:larger" asp-action="Add" asp-area="Employee" asp-controller="Permission">Add Permission</a>
+        </div>
+    </div>
+
+</div>
+
+</html>

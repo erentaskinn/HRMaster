@@ -1,0 +1,118 @@
+﻿@using IK_Project.UI.Areas.CompanyManager.Models;
+
+@{
+    ViewData["Title"] = "Index";
+}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="shortcut icon" href="../../assets/images/favicon.png" />
+</head>
+<style>
+    .container3 {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content:space-between;
+        background-color: white;
+        /*        height: 250px;
+            */ gap: 10px;
+    }
+
+    .alert {
+        padding: 20px;
+        
+        color: white;
+    }
+
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .closebtn:hover {
+            color: black;
+        }
+</style>
+
+@model NotificationVM
+
+<div class="container d-xl-block">
+    @if (Model.Advances != null && Model.Advances.Count() > 0)
+    {
+        <div class="alert" style="background-color:darkcyan">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Demand Notification!</strong> <a style="color:lightblue" asp-action="CheckAdvanceDemands" asp-controller="Advance">Please click here and check Advance Demands</a>
+        </div>
+    }
+    @if (Model.Expenses != null && Model.Expenses.Count() > 0)
+    {
+        <div class="alert" style="background-color: steelblue">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Demand Notification!</strong>  <a style="color:lightblue" asp-action="CheckExpenseDemands" asp-controller="Expense">Please click here and check Expense Demands</a>
+        </div>
+    }
+    @if (Model.Permissions != null && Model.Expenses.Count() > 0)
+    {
+        <div class="alert" style="background-color:midnightblue">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Demand Notification!</strong>  <a style="color:lightblue" asp-action="CheckPermissionDemands" asp-controller="Permission">Please click here and check Permission Demands</a>
+        </div>
+    }
+</div>
+
+<div class="container3">
+    <div class="card" style="width: 34rem;">
+        <img src="~/images/workDepartmantManagers.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Departmant Managers</h5>
+            <p class="card-body">Adding, deleting, updating and listing departmant managers are done in this section. </p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-success" style="color:azure; font-size:larger" asp-action="Index" asp-area="CompanyManager" asp-controller="DepartmantManager">Click</a>
+        </div>
+    </div>
+    <div class="card" style="width: 34rem;">
+        <img src="~/images/workDepartmants.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Departmants</h5>
+            <p class="card-body">Adding, deleting, updating and listing departmants are done in this section. </p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-success" style="color:azure; font-size:larger" asp-action="Index" asp-area="CompanyManager" asp-controller="Departmant">Click</a>
+        </div>
+    </div>
+    <div class="card" style="width: 34rem;">
+        <img src="~/images/workEmployees.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Employees</h5>
+            <p class="card-body">Adding, deleting, updating and listing employees are done in this section. </p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-success" style="color:azure; font-size:larger" asp-action="GetAllEmployees" asp-area="CompanyManager" asp-controller="Employee">Click</a>
+        </div>
+    </div>
+    <div class="card" style="width: 34rem;">
+        <img src="~/images/workCompany.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Company</h5>
+            <p class="card-body">Editing Company informations are done in this section. </p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-success" style="color:azure; font-size:larger" asp-action="Details" asp-area="CompanyManager" asp-controller="Company">Click</a>
+        </div>
+    </div>
+</div>
+
+

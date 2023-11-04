@@ -1,0 +1,188 @@
+﻿@using IK_Project.Domain.Enums;
+@using IK_Project.UI.Areas.Admin.Models.ViewModels.MenuVMs;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@model AdminMenuCreateVM
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="shortcut icon" href="../../assets/images/favicon.png" />
+</head>
+<html lang="en">
+<style>
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=date], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=email], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=number], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=password], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+</style>
+
+<div class="container-xl px-4 mt-4">
+
+
+    <form enctype="multipart/form-data" method="post" asp-action="Create" asp-area="Admin" asp-controller="Menu">
+
+        <div class="card mb-4 mb-xl-0">
+            <div class="card-header" style="font-size:18px;">Menu Create</div>
+
+            <div class="card-body">
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Name:</label>
+                    <input style="font-size:16px;" asp-for="Name" id="form4Example1" type="text" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Period:</label>
+                    <input style="font-size:16px;" asp-for="Period" id="form4Example1" type="number" />
+                    <span asp-validation-for="Period" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Unit Price:</label>
+                    <input style="font-size:16px;" asp-for="UnitPrice" id="form4Example1" type="number" />
+                    <span asp-validation-for="UnitPrice" class="text-danger"></span>
+                </div>
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">User Amount:</label>
+                    <input style="font-size:16px;" asp-for="UserAmount" id="form4Example1" type="number" />
+                    <span asp-validation-for="UserAmount" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="form-label" for="form4Example2">Currecy:</label>
+                    <select style="font-size:16px;" style="height:max-content" asp-for="@Model.Currecy" asp-items="@Html.GetEnumSelectList<CurrecyUnit>()">
+                        <option value="">Choose Currecy..</option>
+                    </select>
+                    <span asp-validation-for="Currecy" class="text-danger"></span>
+                </div>
+                    
+@*                    <div class="mb-3">
+                        <label style="font-size:16px;" class="form-label" for="form4Example2">Statu:</label>
+                        <select style="font-size:16px;" style="height:max-content" asp-for="@Model.Status" asp-items="@Html.GetEnumSelectList<Status>()">
+                            <option value="">Choose Status..</option>
+                        </select>
+                        <span asp-validation-for="Status" class="text-danger"></span>
+                    </div>*@
+@*                <td>
+                    @{
+                        bool isMenuActive = item.IsActive ?? false; // IsActive null ise false olarak kabul edilir
+                    }
+
+                    <div class="toggle-container">
+                        <label class="toggle-label">
+                            <input type="checkbox" id="toggle_@item.Id" class="toggle-input" data-menuid="@item.Id" data-status="@item.IsActive ? 'true' : 'false'" @(isMenuActive ? "checked" : "")>
+                            <span class="slider"></span>
+                        </label>
+                        <p id="status_@item.Id" class="status"> @(isMenuActive ? "Active" : "Deactive")</p>
+                    </div>
+
+
+                </td>*@
+
+ 
+                <div class="mb-4">
+                    <label class="form-label" for="form4Example1">Status :</label>
+                    <select id="isActiveDropdown" style="font-size: 16px; height: max-content" asp-for="IsActive" class="form-control">
+                        <option value="true">Active</option>
+                        <option value="false">Deactive</option>
+                    </select>
+                </div>
+
+
+
+                <!-- Save changes button-->
+                <button type="submit" class="btn btn-primary float-right">Save Changes</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+
+</html>
+

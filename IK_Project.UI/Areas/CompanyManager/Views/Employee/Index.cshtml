@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    var employeeRangeError = TempData["EmployeeRangeError"] as string;
+}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="shortcut icon" href="../../assets/images/favicon.png" />
+</head>
+<div class="d-grid">
+@*    <a class="btn btn-block btn-sm btn-info" style="color:azure; font-size:larger" asp-action="GetAllEmployees">List All Employees</a>
+    <br />
+    <a class="btn btn-block btn-primary" style="color:azure; font-size:larger" asp-action="Create">Add New Employee</a>*@
+    @Html.ValidationSummary()
+    <br />
+    <!-- Your other buttons here -->
+    @if (!string.IsNullOrEmpty(employeeRangeError))
+    {
+        <div class="text-danger">@employeeRangeError</div>
+    }
+</div>
+

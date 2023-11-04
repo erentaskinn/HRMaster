@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    //Layout = "~Views/Shared/_Layout.cshtml";
+}
+<head>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Corona Admin</title>
+        <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
+        <link rel="stylesheet" href="../../assets/css/style.css">
+        <link rel="shortcut icon" href="../../assets/images/favicon.png" />
+    </head>
+</head>
+<style>
+    .container3 {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        background-color: white;
+        /*        height: 250px;
+             gap: 10px;   */
+    }
+</style>
+
+<div class="container3">
+    <div class="card" style="width: 25rem;">
+        <img src="~/images/workCompany.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Companies</h5>
+            <p class="card-body">Adding, deleting, updating and listing Expense are done in this section. </p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-danger" style="color:azure; font-size:larger" asp-action="Create" asp-area="Admin" asp-controller="Company">Create Company</a>
+            <a class="btn btn-block btn-danger" style="color:azure; font-size:larger" asp-action="GetAllCompanies" asp-area="Admin" asp-controller="Company">List All Companies</a>
+        </div>
+    </div>
+    <div class="card" style="width: 36rem;">
+        <img src="~/images/workCompanyManagers.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Company Managers</h5>
+            <p class="card-body">Adding, deleting, updating and listing Advance are done in this section. </p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-primary" style="color:azure; font-size:larger" asp-action="Create" asp-area="Admin" asp-controller="CompanyManager">Create Company Manager</a>
+            <a class="btn btn-block btn-primary" style="color:azure; font-size:larger" asp-action="GetAllCompanyManagers" asp-area="Admin" asp-controller="CompanyManager">List All Company Managers</a>
+        </div>
+    </div>
+    <div class="card" style="width: 24rem;">
+        <img src="~/images/workPackage.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Packages</h5>
+            <p class="card-body">Adding, deleting, updating and listing Permission are done in this section. </p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-success" style="color:azure; font-size:larger" asp-action="Create" asp-area="Admin" asp-controller="Menu">Create Package</a>
+            <a class="btn btn-block btn-success" style="color:azure; font-size:larger" asp-action="GetAllMenus" asp-area="Admin" asp-controller="Menu">List All Packages</a>
+        </div>
+    </div>
+
+</div>
+
+@*<div class="container3">
+
+    @await Component.InvokeAsync("Admin")
+
+   <p>admin area</p>
+
+</div>
+
+<div class="container3">
+
+
+    <div class="card" style="width: 18rem;">
+        <img src="~/images/work3.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Admin</h5>
+            <p class="card-body">Adding Admins are done in this section.</p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-success" style="color:azure; font-size:larger" asp-action="Create" asp-area="Admin" asp-controller="Admin">Click</a>
+    </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <img src="~/images/work1.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Company</h5>
+            <p class="card-body">Adding, deleting, updating and listing companies are done in this section.</p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-primary" style="color:azure; font-size:larger" asp-action="Index" asp-area="Admin" asp-controller="Company">Click</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <img src="~/images/work2.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Company Manager</h5>
+            <p class="card-body">Adding, deleting, updating and listing Company Managers are done in this section. </p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-success" style="color:azure; font-size:larger" asp-action="Index" asp-area="Admin" asp-controller="CompanyManager">Click</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <img src="~/images/work3.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Package</h5>
+            <p class="card-body">Adding, deleting, updating and listing package are done in this section. </p>
+        </div>
+      
+        <div class="card-footer">
+            <a class="btn btn-block btn-info" style="color:azure; font-size:larger" asp-action="Index" asp-area="Admin" asp-controller="Menu">Click</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <img src="~/images/work4.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Role</h5>
+            <p class="card-text">Deleting, updating and listing roles are done in this section. </p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-success" style="color:azure; font-size:larger" asp-action="Index" asp-area="Admin" asp-controller="Role">Click</a>
+        </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+        <img src="~/images/work2.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+            <h5 class="card-title">User-Role</h5>
+            <p class="card-text">Adding, deleting, updating and listing roles to the user are done here.</p> 
+  </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-info" style="color:azure; font-size:larger" asp-action="ListUsers" asp-area="Admin" asp-controller="Role">Click</a>
+        </div>
+</div>
+</div>*@
+
+
+

@@ -1,0 +1,159 @@
+﻿@using IK_Project.UI.Areas.Admin.Models.ViewModels.CompanyVM;
+@using IK_Project.Domain.Enums;
+
+@{
+    ViewData["Title"] = "GetAllCompanies";
+}
+
+@model List<AdminCompanyListVM>
+<link href="~/css/status.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="shortcut icon" href="../../assets/images/favicon.png" />
+</head>
+
+<div class="row">
+    <div class="col-lg-12">
+        <a class="btn btn-primary" style="color:azure; font-size:larger" asp-action="Create">Add New Company</a>
+    </div>
+</div>
+
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table align-middle mb-0 bg-white">
+            <thead class="bg-light">
+                <tr>              
+                    <th>Company Name</th>
+                    <th>Company Manager</th>
+                    <th>Number Of Employees</th>
+                    <th>Logo</th>
+                    <th>PhoneNumber</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Detail</th>
+                    <th>Delete</th>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        @*<td>
+                            <p class="fw-normal mb-1" asp-for="@item.Id">@item.Id</p>
+                            <p class="text-muted mb-0"></p>
+                        </td>*@
+                        <td>
+                            <p class="fw-normal mb-1" asp-for="@item.CompanyName">@item.CompanyName</p>
+                            <p class="text-muted mb-0"></p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1" asp-for="@item.CompanyManagerName">@item.CompanyManagerName</p>
+                            <p class="text-muted mb-0"></p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1" asp-for="@item.NumberOfEmployees">@item.NumberOfEmployees</p>
+                            <p class="text-muted mb-0"></p>
+                        </td>
+                        <td>
+                            @if (item.Logo != null)
+                            {
+                                <img class="company-logo fw-normal mb-1" src="~/images/@item.Logo" asp-for="@item.Logo">
+
+                            }
+                            else
+                            {
+                                <img class="company-logo fw-normal mb-1" src="~/images/myLogo.jpg" asp-for="@item.Logo ">
+                            }
+                            <p class="text-muted mb-0"></p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1" asp-for="@item.PhoneNumber">@item.PhoneNumber</p>
+                            <p class="text-muted mb-0"></p>
+                        </td>
+
+                        <td>
+                            <p class="fw-normal mb-1" asp-for="@item.Address">@item.Address</p>
+                            <p class="text-muted mb-0"></p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1" asp-for="@item.Email">@item.Email</p>
+                            <p class="text-muted mb-0"></p>
+                        </td>
+@*
+                        <td>
+                            <p class="fw-normal mb-1" asp-for="@item.Status">@item.Status</p>
+                        </td>*@
+                        <td>
+                            @{
+                                bool isCompanyActive = item.IsActive;
+                            }
+
+                            <div class="toggle-container">
+                                <label class="toggle-label">
+                                    <input type="checkbox" id="toggle_@item.Id" class="toggle-input" data-companyid="@item.Id" data-status="@item.IsActive ? 'true' : 'false'" @(isCompanyActive ? "checked" : "")>
+                                    <span class="slider"></span>
+                                </label>
+                                <p id="status_@item.Id" class="status"> @(isCompanyActive ? "Active" : "Deactive")</p>
+                            </div>
+
+
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-area="Admin" asp-controller="Company" asp-route-id="@item.Id" type="button" class="btn btn-info">
+                                Detail
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" asp-controller="Company" asp-action="Delete" asp-area="Admin" asp-route-id="@item.Id" onclick="return showDataAlert()">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<style>
+    /* Logo boyutunu ayarla */
+    .company-logo {
+        max-width: 50px; /* İstediğiniz genişliği burada belirtin */
+        max-height: 50px; /* İstediğiniz yüksekliği burada belirtin */
+    }
+</style>
+<script>
+
+    $('input[type="checkbox"]').change(function () {
+        const companyId = $(this).data("companyid");
+        const newStatus = this.checked; // true veya false olarak checkbox durumunu alın
+
+        // Değişkenin değerini konsola yazdırın
+        console.log("newStatus:", newStatus);
+        console.log(companyId);
+
+        const statusElement = $("#status_" + companyId);
+        statusElement.text(newStatus ? "Active" : "Deactive");
+
+        $.ajax({
+            url: "/Admin/Company/UpdateCompanyStatus",
+            type: "POST",
+            data: { companyId: companyId, newStatus: newStatus },
+        });
+    });
+
+
+
+</script>
+

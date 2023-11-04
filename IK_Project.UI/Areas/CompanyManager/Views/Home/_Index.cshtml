@@ -1,0 +1,144 @@
+﻿@using IK_Project.UI.Areas.CompanyManager.Models.CompanyManager
+@model CompanyManagerCompanyManagerUpdateVM
+
+@{
+    Layout = "~/Areas/CompanyManager/Views/Shared/_CompanyManagerLayout.cshtml";
+}
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Users / Profile - NiceAdmin Bootstrap Template</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <main id="main" class="main">
+        <section class="section profile">
+            <div class="row">
+                <div class="col-xl-6">
+
+                    <div class="card">
+                        <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                            @if (Model.ProfilePhoto != null)
+                            {
+                                <img src="~/images/@Model.ProfilePhoto" />
+                            }
+                            else
+                            {
+                                <img src="~/assets/img/profile-img.jpg" alt="Profile">
+                            }
+                            <h2>@Model.Name @Model.LastName</h2>
+                            <h3>@Model.Profession</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-body pt-3">
+                        <!-- Bordered Tabs -->
+                        <div class="tab-content pt-2">
+
+                            <!-- Profile Edit Form -->
+                            <form enctype ="multipart/form-data" method="post" asp-action="ProfileDetails" asp-controller="Home">
+                                <div class="row mb-3">
+                                    <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                                    <div class="col-md-8 col-lg-9">
+@*                                        @if (Model.ProfilePhoto != null)
+                                        {
+                                            <img src="~/images/@Model.ProfilePhoto" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/assets/img/profile-img.jpg" alt="Profile">
+                                        }*@
+                                        <div class="pt-2">
+                                            <input type="file" asp-for="@Model.ProfilePhoto" accept="image/*" class="form-control" />
+@*                                            <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
+                                            <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>*@
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Name</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="Name" type="text" class="form-control" id="fullName" value="@Model.Name" required>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="about" class="col-md-4 col-lg-3 col-form-label">SurName</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="LastName" type="text" class="form-control" id="fullName" value="@Model.LastName" required>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="Address" type="text" class="form-control" id="Address" value="@Model.Address">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="PhoneNumber" type="text" class="form-control" id="Phone" value="@Model.PhoneNumber">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="Email" type="email" class="form-control" id="Email" value="@Model.Email" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </form><!-- End Profile Edit Form -->
+                        </div><!-- End Bordered Tabs -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main><!-- End #main -->
+    <script src="~/assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="~/assets/vendor/echarts/echarts.min.js"></script>
+    <script src="~/assets/vendor/quill/quill.min.js"></script>
+    <script src="~/assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="~/assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="~/assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/assets/js/main.js"></script>
+</body>
+
+</html>

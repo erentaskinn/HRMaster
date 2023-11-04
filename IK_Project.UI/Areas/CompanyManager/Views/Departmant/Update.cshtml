@@ -1,0 +1,140 @@
+﻿
+@using IK_Project.UI.Areas.CompanyManager.Models;
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+@model CompanyManagerDepartmantUpdateVM
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <link rel="stylesheet" href="/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="shortcut icon" href="/assets/images/favicon.png" />
+</head>
+<html lang="en">
+@* <style>
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=date], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=datetime], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=email], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=number], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=password], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+</style> *@
+        @if (Model.Name != "sameName")
+{
+<div class="container-xl px-4 mt-4">
+    <!-- Account details card-->
+    @*<form class="needs-validation" novalidate method="post" asp-action="Edit" asp-area="Admin" asp-controller="Menu">*@
+    <form method="post" asp-action="Update" asp-area="CompanyManager" asp-controller="Departmant">
+        <div class="card mb-4 mb-xl-0">
+            <div class="card-header" style="font-size:18px;">Departmant Detail</div>
+
+            <div class="card-body">
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=Name class="small mb-1" for="inputCompanyManager">Name:</label>
+                    <input style="font-size:16px;" asp-for=Name type="text" value="@Model.Name" id="inputCompanyManager">
+                </div>
+                
+                <button type="submit" class="btn btn-primary float-right">Save Changes</button>
+
+            </div>
+        </div>
+
+    </form>
+</div>
+}
+else
+{
+    <h3 style="color: red; font-weight: bold;">There is a departmant with same name</h3>
+}
+</html>
+
+

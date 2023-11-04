@@ -1,0 +1,226 @@
+﻿@using IK_Project.Domain.Enums;
+@using IK_Project.UI.Areas.CompanyManager.Models.DepartmanManager;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@model CompanyManagerDepartmantManagerCreateVM
+<link href="~/css/mailtoggle.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="shortcut icon" href="../../assets/images/favicon.png" />
+</head>
+
+<html lang="en">
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=date], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=email], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=number], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=password], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+</style>
+
+<div class="container-xl px-4 mt-4">
+
+
+    <form enctype="multipart/form-data" method="post" asp-area="CompanyManager" asp-controller="DepartmantManager" asp-action="Create">
+
+
+
+        <div class="card-header" style="font-size:20px;">Profile Details</div>
+        <br />
+        <div class="mb-3">
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header" style="font-size:18px;">Profile Picture</div>
+
+                @*                <div class="card-body text-center">
+                <input lang="en" type="file" asp-for="@Model.ProfilePhoto" class="form-control" />
+                <span asp-validation-for="@Model.ProfilePhoto" class="text-danger"></span>
+                @Html.ValidationSummary()
+                </div>*@
+                <div class="card-body text-center">
+
+                    @*<input lang="en" type="file" asp-for="@Model.ProfilePhoto" class="form-control" />*@
+
+                    <input type="file" asp-for="@Model.LogoFile" accept="image/*" class="form-control" />
+                    <span asp-validation-for="LogoFile.Length" class="text-danger"></span>
+                    <span asp-validation-for="LogoFile.ContentType" class="text-danger"></span>
+                    <span asp-validation-for="LogoFile" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4 mb-xl-0">
+            <div class="card-header" style="font-size:18px;">Details</div>
+
+            <div class="card-body">
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for="@Model.Name" class="small mb-1" for="inputUsername">First Name:</label>
+                    <input style="font-size:16px;" asp-for="@Model.Name" id="inputUsername" type="text" >
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.LastName class="small mb-1" for="inputUsername">Last Name:</label>
+                    <input style="font-size:16px;" asp-for=@Model.LastName id="inputUsername" type="text" >
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.BirthDate class="small mb-1" for="inputUsername">Birth Date:</label>
+                    <input style="font-size:16px;" asp-for=@Model.BirthDate id="form4Example2" type="date" >
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.BirhtPlace class="small mb-1" for="inputUsername">Birth Place:</label>
+                    <input style="font-size:16px;" asp-for=@Model.BirhtPlace id="inputUsername" type="text" >
+                    <span asp-validation-for="BirhtPlace" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.Address class="small mb-1" for="inputUsername">Address:</label>
+                    <input style="font-size:16px;" asp-for=@Model.Address id ="inputUsername" type="text" >
+                    <span asp-validation-for="BirhtPlace" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.PhoneNumber class="small mb-1" for="inputUsername">PhoneNumber:</label>
+                    <input style="font-size:16px;" asp-for=@Model.PhoneNumber id="inputUsername" type="text" >
+                    <span asp-validation-for="BirhtPlace" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.StartDate class="small mb-1" for="inputUsername">Start Date:</label>
+                    <input style="font-size:16px;" asp-for=@Model.StartDate id="form4Example2" type="date" >
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+@*                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.CompanyName class="small mb-1" for="inputUsername">Company:</label>
+                    <input style="font-size:16px;" asp-for=@Model.CompanyName id="form4Example2" type="text" readonly>
+                    <input type="hidden" asp-for="CompanyID" value=@Model.CompanyID />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>*@
+                <div class="mb-3">
+                    <input hidden readonly asp-for=DepartmantDTOs class="form-control" id="inputDateTime" type="text" value="@Model.DepartmantDTOs">
+                </div>
+                <select style="font-size:16px;" style="height:max-content" asp-for="DepartmantId">
+                    <option selected value="0">Select Departmant... </option>
+
+                    @if (Model.DepartmantDTOs != null)
+                    {
+                        @foreach (var item in Model.DepartmantDTOs)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    }
+                </select>
+
+                <div class="toggle-container">
+                    <label class="toggle-label">
+                        <input type="checkbox" id="toggle" class="toggle-input">
+                        <span class="slider"></span>
+                    </label>
+                    <p id="status" class="status">Auto Email</p>
+                </div>
+
+                <div class="mb-3">
+                    <label class="small mb-1" for="customEmail">Custom Email:</label>
+                    <input class="form-control" type="email" readonly id="customEmail" name="customEmail">
+                    <span id="customEmailWarning" style="color: red; display: none;">E-posta adresi boş bırakılamaz.</span>
+                </div>
+                <!-- Save changes button-->
+                <button type="submit" style="font-size:16px;" class="btn btn-primary float-right">Create</button>
+                @if (!string.IsNullOrEmpty(ViewData["ProfilePhotoError"] as string))
+                {
+                    <div class="text-danger">@ViewData["ProfilePhotoError"]</div>
+                }
+            </div>
+        </div>
+
+    </form>
+
+
+</div>
+<script src="~/js/mailtoggle.js"></script>
+</html>
+
+
